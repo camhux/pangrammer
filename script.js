@@ -1,4 +1,5 @@
-var $letters = $('.letters span');
+var $letters = $('.letters');
+var $container = $('.container');
 var $textField = $('#textfield').find('input');
 
 $textField.on('input', function(event) {
@@ -10,7 +11,8 @@ $textField.on('input', function(event) {
       return set;
     }, []);
 
-    $letters.each(function(index) {
+    $letters.detach();
+    $letters.find('span').each(function(index) {
       var $this = $(this);
       if (contents.indexOf($this.attr('id')) >= 0) {
         $this.css({visibility: 'hidden'});
@@ -18,5 +20,6 @@ $textField.on('input', function(event) {
         $this.css({visibility: 'visible'});
       }
     });
+    $letters.prependTo($container);
 
 });
